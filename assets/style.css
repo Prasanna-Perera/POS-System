@@ -396,3 +396,46 @@ body {
 		font-size: 0.86rem;
 	}
 }
+
+@media print {
+	body {
+		background: #ffffff;
+	}
+
+	.pos-header,
+	.menu-section,
+	.bill-actions,
+	.qty-btn {
+		display: none !important;
+	}
+
+	.pos-container {
+		display: block;
+		padding: 0;
+		width: 100%;
+	}
+
+	.bill-panel {
+		position: static;
+		box-shadow: none;
+		border: none;
+		width: 80mm;
+		max-width: 100%;
+		margin: 0 auto;
+		padding: 8px;
+	}
+
+	.bill-items {
+		max-height: none;
+		overflow: visible;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

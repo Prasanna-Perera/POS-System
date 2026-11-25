@@ -503,6 +503,10 @@ body {
 	}
 }
 
+.name{
+    margin-left: 490px;
+}
+
 @media print {
 	body {
 		background: #ffffff;

@@ -1,13 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".item-card");
-    const categoryButtons = document.querySelectorAll(".cat-btn");
+    const itemsGrid = document.getElementById("items-grid");
     const billItemsEl = document.getElementById("bill-items");
     const billTotalEl = document.getElementById("bill-total");
     const billDateEl = document.getElementById("bill-date");
+    const billNumberEl = document.getElementById("bill-number");
     const clearBtn = document.getElementById("clear-bill-btn");
     const printBtn = document.getElementById("print-bill-btn");
 
+    const openAddBtn = document.getElementById("open-add-item-btn");
+    const cancelAddBtn = document.getElementById("cancel-add-item-btn");
+    const addItemForm = document.getElementById("add-item-form");
+    const customNameInput = document.getElementById("custom-item-name");
+    const customPriceInput = document.getElementById("custom-item-price");
+    const customCatSelect = document.getElementById("custom-item-cat");
+
     let cart = [];
+    let billCounter = 1;
+
+    function updateBillNumber() {
+        if (!billNumberEl) return;
+        billNumberEl.textContent = `Bill #${String(billCounter).padStart(4, "0")}`;
+    }
 
     function updateDate() {
         if (!billDateEl) return;
@@ -15,15 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
         billDateEl.textContent = now.toLocaleString();
     }
 
-    // 1. Category Filter
-    categoryButtons.forEach((btn) => {
+    function addToCart(name, price) {
+        if (!name || Number.isNaN(price) || price <= 0) return;
+        const existingItem = cart.find((item) => item.name === name);
+        if (existingItem) {
+            existingItem.qty += 1;
+        } else {
+            cart.push({ name, price, qty: 1 });
+        }
+        renderBill();
+    }
+
+    function attachCardClick(card) {
+        card.addEventListener("click", () => {
+            const name = card.dataset.name || card.querySelector("h3")?.textContent.trim();
+            const rawPrice = card.dataset.price || card.querySelector(".price")?.textContent.replace(/[^0-9.]/g, "");
+            const price = Number(rawPrice);
+            addToCart(name, price);
+        });
+    }
+
+    // Existing cards
+    document.querySelectorAll(".item-card").forEach(attachCardClick);
+
+    // Category Filter
+    document.querySelectorAll(".cat-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-            categoryButtons.forEach((b) => b.classList.remove("active"));
+            document.querySelectorAll(".cat-btn").forEach((b) => b.classList.remove("active"));
             btn.classList.add("active");
 
             const filter = btn.dataset.filter;
-
-            cards.forEach((card) => {
+            document.querySelectorAll(".item-card").forEach((card) => {
                 const category = card.dataset.category;
                 if (filter === "all" || category === filter) {
                     card.style.display = "flex";
@@ -34,27 +69,55 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2. Card click -> Add item / Increase count
-    cards.forEach((card) => {
-        card.addEventListener("click", () => {
-            const name = card.dataset.name || card.querySelector("h3")?.textContent.trim();
-            const rawPrice = card.dataset.price || card.querySelector(".price")?.textContent.replace(/[^0-9.]/g, "");
-            const price = Number(rawPrice);
-
-            if (!name || Number.isNaN(price)) return;
-
-            const existingItem = cart.find((item) => item.name === name);
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-
-            renderBill();
-        });
+    // Toggle Custom Item Form
+    openAddBtn?.addEventListener("click", () => {
+        addItemForm.hidden = !addItemForm.hidden;
+        if (!addItemForm.hidden) {
+            customNameInput.focus();
+        }
     });
 
-    // 3. Render Bill Items
+    cancelAddBtn?.addEventListener("click", () => {
+        addItemForm.reset();
+        addItemForm.hidden = true;
+    });
+
+    // Submit Custom Item -> Add to Menu Grid + Add to Bill
+    addItemForm?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = customNameInput.value.trim();
+        const price = Number(customPriceInput.value);
+        const category = customCatSelect.value;
+
+        if (!name || Number.isNaN(price) || price <= 0) return;
+
+        const card = document.createElement("div");
+        card.className = "item-card";
+        card.dataset.category = category;
+        card.dataset.name = name;
+        card.dataset.price = String(price);
+        card.innerHTML = `
+            <div style="width:100%;height:135px;margin-bottom:11px;border-radius:12px;background:linear-gradient(145deg,#eaf6ef,#f4f8f0);display:flex;align-items:center;justify-content:center;font-size:2.4rem;">🍹</div>
+            <h3>${name}</h3>
+            <p class="price">Rs. ${price.toFixed(2)}</p>
+        `;
+
+        // Respect active category filter
+        const activeFilter = document.querySelector(".cat-btn.active")?.dataset.filter || "all";
+        if (activeFilter !== "all" && activeFilter !== category) {
+            card.style.display = "none";
+        }
+
+        attachCardClick(card);
+        itemsGrid.appendChild(card);
+
+        addToCart(name, price);
+
+        addItemForm.reset();
+        addItemForm.hidden = true;
+    });
+
+    // Render Bill Items
     function renderBill() {
         if (!billItemsEl || !billTotalEl) return;
 
@@ -87,9 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="bill-row-total">Rs. ${itemTotal.toFixed(2)}</span>
             `;
 
-            // Minus button
-            const minusBtn = row.querySelector(".minus-btn");
-            minusBtn.addEventListener("click", (e) => {
+            row.querySelector(".minus-btn").addEventListener("click", (e) => {
                 e.stopPropagation();
                 cart[index].qty -= 1;
                 if (cart[index].qty <= 0) {
@@ -98,9 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderBill();
             });
 
-            // Plus button
-            const plusBtn = row.querySelector(".plus-btn");
-            plusBtn.addEventListener("click", (e) => {
+            row.querySelector(".plus-btn").addEventListener("click", (e) => {
                 e.stopPropagation();
                 cart[index].qty += 1;
                 renderBill();
@@ -112,26 +171,25 @@ document.addEventListener("DOMContentLoaded", () => {
         billTotalEl.textContent = `Rs. ${grandTotal.toFixed(2)}`;
     }
 
-    // 4. Clear Bill
-    if (clearBtn) {
-        clearBtn.addEventListener("click", () => {
-            cart = [];
-            renderBill();
-        });
-    }
+    clearBtn?.addEventListener("click", () => {
+        cart = [];
+        renderBill();
+    });
 
-    // 5. Print Bill
-    if (printBtn) {
-        printBtn.addEventListener("click", () => {
-            if (cart.length === 0) {
-                alert("Bill එකේ items නැහැ!");
-                return;
-            }
-            updateDate();
-            window.print();
-        });
-    }
+    printBtn?.addEventListener("click", () => {
+        if (cart.length === 0) {
+            alert("Bill එකේ items නැහැ!");
+            return;
+        }
+        updateDate();
+        window.print();
+        billCounter += 1;
+        updateBillNumber();
+        cart = [];
+        renderBill();
+    });
 
+    updateBillNumber();
     updateDate();
     renderBill();
 });

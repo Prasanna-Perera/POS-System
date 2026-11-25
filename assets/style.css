@@ -1,2 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
 
+:root {
+	color-scheme: light;
+	--green: #238a55;
+	--green-dark: #176b40;
+	--ink: #20342a;
+	--muted: #748078;
+	--cream: #f7f8f2;
+	--white: #ffffff;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juice Shop POS</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <header class="pos-header">
+        <h1>🍹 Fresh Juice 🍹</h1>
+    </header>
+
+    <main class="pos-container">
+
+        <!-- Left Side: Menu -->
+        <section class="menu-section">
+            <div class="category-bar">
+                <button type="button" class="cat-btn active" data-filter="all">All</button>
+                <button type="button" class="cat-btn" data-filter="juices">Fresh Juices</button>
+                <button type="button" class="cat-btn" data-filter="milkshakes">Milkshakes</button>
+                <button type="button" class="cat-btn" data-filter="salads">Fruit Salads</button>
+            </div>
+
+            <div class="items-grid" id="items-grid">
+                <div class="item-card" data-category="juices" data-name="Apple Juice" data-price="250">
+                    <img src="assets/img/Apple.png" alt="Apple Juice">
+                    <h3>Apple Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Avocado Juice" data-price="300">
+                    <img src="assets/IMG/Avocado.png" alt="Avocado Juice">
+                    <h3>Avocado Juice</h3>
+                    <p class="price">Rs. 300.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Banana Juice" data-price="250">
+                    <img src="assets/img/Banana.png" alt="Banana Juice">
+                    <h3>Banana Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Grapes Juice" data-price="250">
+                    <img src="assets/IMG/Grapes.png" alt="Grapes Juice">
+                    <h3>Grapes Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Lime Juice" data-price="200">
+                    <img src="assets/IMG/Lime.png" alt="Lime Juice">
+                    <h3>Lime Juice</h3>
+                    <p class="price">Rs. 200.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Mango Juice" data-price="300">
+                    <img src="assets/IMG/Mango.png" alt="Mango Juice">
+                    <h3>Mango Juice</h3>
+                    <p class="price">Rs. 300.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Orange Juice" data-price="250">
+                    <img src="assets/IMG/Orange.png" alt="Orange Juice">
+                    <h3>Orange Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Papaya Juice" data-price="250">
+                    <img src="assets/IMG/Papaya.png" alt="Papaya Juice">
+                    <h3>Papaya Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Pineapple Juice" data-price="250">
+                    <img src="assets/IMG/Pineapple.png" alt="Pineapple Juice">
+                    <h3>Pineapple Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Stawberry Juice" data-price="350">
+                    <img src="assets/IMG/Stawberry.png" alt="Stawberry Juice">
+                    <h3>Stawberry Juice</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+
+                <div class="item-card" data-category="juices" data-name="Watermelon Juice" data-price="250">
+                    <img src="assets/IMG/Watermelon.png" alt="Watermelon Juice">
+                    <h3>Watermelon Juice</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="milkshakes" data-name="Banana Smoothie" data-price="300">
+                    <img src="assets/IMG/Banana Smoothie.png" alt="Banana Smoothie">
+                    <h3>Banana Smoothie</h3>
+                    <p class="price">Rs. 300.00</p>
+                </div>
+
+                <div class="item-card" data-category="milkshakes" data-name="Chocolate Milkshakes" data-price="350">
+                    <img src="assets/IMG/Chocolate.png" alt="Chocolate Milkshakes">
+                    <h3>Chocolate Milkshakes</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+
+                <div class="item-card" data-category="milkshakes" data-name="Vanilla Milkshakes" data-price="350">
+                    <img src="assets/IMG/Vanilla.png" alt="Vanilla Milkshakes">
+                    <h3>Vanilla Milkshakes</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+
+                <div class="item-card" data-category="milkshakes" data-name="Milkshakes" data-price="300">
+                    <img src="assets/IMG/Milkshake.png" alt="Milkshakes">
+                    <h3>Milkshakes</h3>
+                    <p class="price">Rs. 300.00</p>
+                </div>
+
+                <div class="item-card" data-category="milkshakes" data-name="Oreo Milkshakes" data-price="350">
+                    <img src="assets/IMG/Oreo.png" alt="Oreo Milkshakes">
+                    <h3>Oreo Milkshakes</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+
+                <div class="item-card" data-category="salads" data-name="Fruit Salad" data-price="350">
+                    <img src="assets/IMG/Fruit Salad.png" alt="Fruit Salad">
+                    <h3>Fruit Salad</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+
+                <div class="item-card" data-category="salads" data-name="Fresh Salad" data-price="250">
+                    <img src="assets/IMG/Fresh Salad.png" alt="Fresh Salad">
+                    <h3>Fresh Salad</h3>
+                    <p class="price">Rs. 250.00</p>
+                </div>
+
+                <div class="item-card" data-category="salads" data-name="Fruit Salad & ice" data-price="450">
+                    <img src="assets/IMG/Fruit Salad & ice.png" alt="Fruit Salad & ice">
+                    <h3>Fruit Salad & ice</h3>
+                    <p class="price">Rs. 450.00</p>
+                </div>
+
+                <div class="item-card" data-category="salads" data-name="Mixed Fruit Salad" data-price="350">
+                    <img src="assets/IMG/Mixed Fruit Salad.png" alt="Mixed Fruit Salad">
+                    <h3>Mixed Fruit Salad</h3>
+                    <p class="price">Rs. 350.00</p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="bill-panel" id="bill-panel">
+            <div class="bill-top-bar">
+                <span class="bill-no" id="bill-number">Bill #0001</span>
+                <button type="button" class="btn-add-custom" id="open-add-item-btn">+ Add Item</button>
+            </div>
+
+            <form class="add-item-form" id="add-item-form" hidden>
+                <input type="text" id="custom-item-name" placeholder="Item name (e.g. Papaya Special)" required>
+                <div class="add-item-row">
+                    <input type="number" id="custom-item-price" placeholder="Price (Rs.)" min="1" step="0.01" required>
+                    <select id="custom-item-cat">
+                        <option value="juices">Fresh Juices</option>
+                        <option value="milkshakes">Milkshakes</option>
+                        <option value="salads">Fruit Salads</option>
+                    </select>
+                </div>
+                <div class="add-item-actions">
+                    <button type="submit" class="btn-save-item">Add to Bill</button>
+                    <button type="button" class="btn-cancel-item" id="cancel-add-item-btn">Cancel</button>
+                </div>
+            </form>
+
+            <div class="bill-header">
+                <h2>🍹 Fresh Juice Bill</h2>
+                <p class="bill-meta" id="bill-date"></p>
+            </div>
+
+            <div class="bill-items" id="bill-items">
+                <p class="empty-bill">Select an item to add to bill</p>
+            </div>
+
+            <div class="bill-footer">
+                <div class="bill-total-row">
+                    <span>Total</span>
+                    <span id="bill-total">Rs. 0.00</span>
+                </div>
+
+                <div class="bill-actions">
+                    <button type="button" class="btn-clear" id="clear-bill-btn">Clear</button>
+                    <button type="button" class="btn-print" id="print-bill-btn">Print Bill</button>
+                </div>
+            </div>
+        </aside>
+        <div class="name">
+           <h7>POS System 🍹 PRAZA_BOY 🍹Fresh Juice</h7> 
+        </div>
+        
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

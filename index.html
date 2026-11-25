@@ -136,7 +136,7 @@
 
                 <div class="item-card">
                     <img src="assets/img/Fruit Salad & ice.png" alt="Fruit Salad & ice">
-                    <h3>Fruit Salad & ice</h3>
+                    <h3>Fruit Salad & Ice Cream</h3>
                     <p class="price">Rs. 450.00</p>
                 </div>
 
@@ -145,13 +145,35 @@
                     <h3>Mixed Fruit Salad</h3>
                     <p class="price">Rs. 350.00</p>
                 </div>
-
             </div>
         </section>
 
+        <aside class="Bill-Panal" id="Bill-Panal">
+            <div class="Bill-Header">
+                <h2>🍹 Fresh Juice Bill </h2>
+                <p class="bill-meta" id="bill-data"></p>
+            </div>
+
+            <div class="bill item" id="bill-item">
+                <p class="empty-bill">Select an item to add to Bill</p>
+            </div>
+
+            <div class="bill-footer">
+                <div class="bill-total-row">
+                    <span>Total</span>
+                    <span id="bill-Total">Rs. 0.00</span>
+                </div>
+
+                <div class="bill-actions">
+                    <button type="button" class="btn-clear" id="clear-bill-btn">Clear</button>
+                    <button type="button" class="btn-print" id="print-bill-btn">Print Bill</button>
+                </div>
+            </div>
+        </aside>
+
     </main>
 
-
+    <script src="assets/script.js"></script>
 </body>
 
 </html>

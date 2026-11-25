@@ -9,3 +9,7 @@
 	--cream: #f7f8f2;
 	--white: #ffffff;
 }
+
+* {
+	box-sizing: border-box;
+}

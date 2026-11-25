@@ -21,5 +21,14 @@ body {
 		radial-gradient(ellipse at 92% 8%, rgba(255, 218, 115, 0.18), transparent 28rem),
 		var(--cream);
 	color: var(--ink);
-	font-family: 'DM Sans', sans-serif;
+}
+
+.pos-header {
+	position: relative;
+	overflow: hidden;
+	padding: 22px 24px 25px;
+	text-align: center;
+	color: var(--white);
+	background: linear-gradient(120deg, #176b40 0%, #27975b 55%, #53b76b 100%);
+	box-shadow: 0 8px 26px rgba(30, 104, 61, 0.2);
 }

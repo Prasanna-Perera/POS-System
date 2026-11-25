@@ -177,3 +177,78 @@ body {
 	font-weight: 700;
 	letter-spacing: 0.01em;
 }
+
+.bill-panel {
+	position: sticky;
+	top: 20px;
+	background: var(--white);
+	border: 1px solid rgba(42, 91, 56, 0.1);
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: 0 10px 28px rgba(32, 52, 42, 0.08);
+}
+
+.bill-header {
+	text-align: center;
+	padding-bottom: 12px;
+	border-bottom: 1px dashed #d3dcd5;
+}
+
+.bill-header h2 {
+	margin: 0;
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.25rem;
+	color: var(--green-dark);
+}
+
+.bill-meta {
+	margin: 4px 0 0;
+	font-size: 0.8rem;
+	color: var(--muted);
+}
+
+.bill-items {
+	max-height: 360px;
+	overflow-y: auto;
+	padding: 12px 0;
+}
+
+.empty-bill {
+	text-align: center;
+	color: var(--muted);
+	font-size: 0.9rem;
+	padding: 36px 8px;
+	margin: 0;
+}
+
+.bill-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 0;
+	border-bottom: 1px solid #eef2ee;
+	font-size: 0.9rem;
+}
+
+.bill-row-info {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.bill-row-name {
+	font-weight: 600;
+	color: var(--ink);
+}
+
+.bill-row-sub {
+	font-size: 0.78rem;
+	color: var(--muted);
+}
+
+.bill-row-controls {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
